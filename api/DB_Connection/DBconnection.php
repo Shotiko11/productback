@@ -21,10 +21,10 @@ class DBconnection
 
     private static function connect(): void
     {
-        $host = getenv("http://localhost/");
-        $DataBase = getenv("product_store");
+        $host = getenv("localhost");
+        $DataBase = getenv("scand");
         $Name = getenv("root");
-        $Password = getenv("");
+        $Password = getenv("password");
 
         try {
             self::$con = new PDO("mysql:host=" . $host . ";dbname=" . $DataBase, $Name, $Password);

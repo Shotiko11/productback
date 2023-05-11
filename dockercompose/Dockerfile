@@ -1,6 +1,4 @@
-# build a Docker image
-
-# specifies the base image
+# specifies the base image for PHP
 FROM php:8.1.0-fpm
 
 # installs some packages
@@ -17,4 +15,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # installs the PHP PDO extension
 RUN docker-php-ext-install pdo pdo_mysql
 
-WORKDIR /var/www
+# copies the PHP files into the container
+COPY . /var/www/html/
+
+# sets the working directory
+WORKDIR /var/www/html
+
+# exposes port 8000
+EXPOSE 8000
+
+# starts the PHP process
+CMD ["php", "-S", "0.0.0.0:8000"]
