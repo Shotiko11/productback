@@ -2,23 +2,21 @@
 
 namespace api\core;
 
-use api\core\Interface\ApiInterface;
+use api\core\coreIntefaces\ApiInteface;
 
-
-class Api implements ApiInterface
+class Api implements ApiInteface
 {
 
     public function __construct(private array $request)
     {
         $this->hendle_preflight_request();
     }
-
     public function hendle(): array
     {
 
         $uri = $this->request["URI"];
-        if (Register::is_allowed_URI($uri)) {
-            return Register::call_starter_function($this->request);
+        if (RegisteredRoutes::is_allowed_URI($uri)) {
+            return RegisteredRoutes::call_starter_function($this->request);
         } else {
             header("HTTP/1.0 404 Not Found");
             return [

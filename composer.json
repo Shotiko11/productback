@@ -1,0 +1,10 @@
+{
+  "name": "my/project",
+  "description": "This is my project",
+  "autoload": {
+      "psr-4": {
+          "api\\": "api/"
+      }
+  },
+  "require": {}
+}
